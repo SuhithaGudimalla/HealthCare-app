@@ -1,59 +1,68 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ActivityIndicator, Linking } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-// ✅ Define initial events before using them in useState
-const initialEvents = [
+// ✅ Initial health camps list with village images
+const initialCamps = [
   {
     id: "1",
-    title: "Vignan Mahotsav 2025",
-    date: "6 Feb - 8 Feb | 8:15 AM - 8:00 PM",
-    location: "Guntur",
-    price: "₹0.00",
-    status: "Closed",
-    image: "https://example.com/vignan-mahotsav.jpg",
+    title: "Free Health Camp - Pedakakani",
+    date: "10 Feb | 9:00 AM - 4:00 PM",
+    location: "Pedakakani, Andhra Pradesh",
+    price: "Free",
+    status: "Ongoing",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/36/Pedakakani_Village.jpg",
   },
   {
     id: "2",
-    title: "PRAMANA GITAM Hyderabad",
-    date: "7 Feb - 9 Feb | 8:00 AM - 9:00 PM",
-    location: "Hyderabad",
-    price: "₹799.00",
-    status: "Available",
-    image: "https://example.com/pramana.jpg",
+    title: "General Checkup Camp - Narsapur",
+    date: "15 Feb | 8:30 AM - 5:00 PM",
+    location: "Narsapur, Telangana",
+    price: "Free",
+    status: "Upcoming",
+    image: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Narsapur_Village_View.jpg",
   },
 ];
 
-const Events = () => {
-  const [events, setEvents] = useState(initialEvents);
+// ✅ Function to open location in Google Maps
+const openGoogleMaps = (location) => {
+  const query = encodeURIComponent(location);
+  const url = `https://www.google.com/maps/search/?api=1&query=${query}`;
+  Linking.openURL(url);
+};
+
+const HealthCamps = () => {
+  const [camps, setCamps] = useState(initialCamps);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
 
+  // ✅ Corrected loadMore function with village images
   const loadMore = async () => {
     if (loading) return;
     setLoading(true);
+
     setTimeout(() => {
-      const newEvents = [
+      const newCamps = [
         {
           id: (page * 2 + 1).toString(),
-          title: `Event ${page * 2 + 1}`,
-          date: "10 Feb - 12 Feb | 10:00 AM - 7:00 PM",
-          location: "Bangalore",
-          price: "₹499.00",
-          status: "Available",
-          image: "https://example.com/event3.jpg",
+          title: "Health Checkup - Rampur",
+          date: "20 Feb | 10:00 AM - 3:00 PM",
+          location: "Rampur, Uttar Pradesh",
+          price: "Free",
+          status: "Upcoming",
+          image: "https://upload.wikimedia.org/wikipedia/commons/6/60/Rampur_Village.jpg",
         },
         {
           id: (page * 2 + 2).toString(),
-          title: `Event ${page * 2 + 2}`,
-          date: "15 Feb - 17 Feb | 9:00 AM - 8:00 PM",
-          location: "Chennai",
-          price: "₹299.00",
-          status: "Available",
-          image: "https://example.com/event4.jpg",
+          title: "Medical Awareness Camp - Cheyyur",
+          date: "25 Feb | 9:30 AM - 4:30 PM",
+          location: "Cheyyur, Tamil Nadu",
+          price: "Free",
+          status: "Upcoming",
+          image: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Cheyyur_Village.jpg",
         },
       ];
-      setEvents([...events, ...newEvents]);
+      setCamps((prevCamps) => [...prevCamps, ...newCamps]); // ✅ Functional update
       setPage(page + 1);
       setLoading(false);
     }, 1500);
@@ -61,9 +70,9 @@ const Events = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Top Trending Events</Text>
+      <Text style={styles.header}>Upcoming Health Camps</Text>
       <FlatList
-        data={events}
+        data={camps}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.card}>
@@ -77,23 +86,23 @@ const Events = () => {
                 <FontAwesome5 name="map-marker-alt" /> {item.location}
               </Text>
               <Text style={styles.price}>{item.price}</Text>
-              {item.status !== "Closed" && (
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.buttonText}>Book Now</Text>
-                </TouchableOpacity>
-              )}
+
+              {/* ✅ "See Location" Button Instead of Register */}
+              <TouchableOpacity style={styles.button} onPress={() => openGoogleMaps(item.location)}>
+                <Text style={styles.buttonText}>See Location</Text>
+              </TouchableOpacity>
             </View>
           </View>
         )}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
-        ListFooterComponent={loading ? <ActivityIndicator size="large" color="red" /> : null}
+        ListFooterComponent={loading ? <ActivityIndicator size="large" color="#0077b6" /> : null}
       />
     </View>
   );
 };
 
-// ✅ Define the missing styles object here
+// ✅ Updated Styles with New Theme Color #0077b6
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -103,7 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     padding: 15,
-    backgroundColor: "red",
+    backgroundColor: "#0077b6",
     color: "#fff",
     textAlign: "center",
   },
@@ -142,7 +151,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
-    backgroundColor: "red",
+    backgroundColor: "#0077b6",
     padding: 10,
     borderRadius: 5,
     alignItems: "center",
@@ -153,4 +162,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Events;
+export default HealthCamps;
+

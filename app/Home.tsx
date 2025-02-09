@@ -10,9 +10,27 @@ import {
   ScrollView,
 } from "react-native";
 
+// Function to open Google Maps with a given location
+const openGoogleMaps = (location) => {
+  const query = encodeURIComponent(location);
+  const url = `https://www.google.com/maps/search/?api=1&query=${query}`;
+  Linking.canOpenURL(url)
+    .then((supported) => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        alert("Google Maps cannot be opened on this device.");
+      }
+    })
+    .catch((err) => {
+      console.error("Failed to open Google Maps", err);
+      alert("Could not open Google Maps. Please check your device settings.");
+    });
+};
 
 const Home = () => {
-    const router = useRouter();
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -45,11 +63,14 @@ const Home = () => {
             <Text style={styles.progressText}>25%</Text>
             <View style={styles.progressCircle} />
           </View>
-          <TouchableOpacity style={styles.completeProfileButton}>
+          <TouchableOpacity
+            style={styles.completeProfileButton}
+            onPress={() => router.push("/ProfileSetup")}  // Navigate to Profile Setup page
+            >
             <Text style={styles.completeProfileButtonText}>
-              Complete Your Profile
+                Complete Your Profile
             </Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
         </View>
 
         {/* Upcoming Events */}
@@ -66,12 +87,14 @@ const Home = () => {
           <Text style={styles.eventTitle}>Dengue Health Camp</Text>
           <Text style={styles.eventSubText}>
             People are welcome to visit this health camp to undergo dengue
-            testing and receive essential information on preventive measures to
-            protect themselves against dengue.
+            testing and receive essential information on preventive measures.
           </Text>
           <Text style={styles.eventDate}>11 Feb | 1:00 PM - 6:30 PM</Text>
-          <Text style={styles.eventLocation}>Hyderabad</Text>
-          <TouchableOpacity style={styles.bookButton}>
+          <Text style={styles.eventLocation}>📍 Nizamabad</Text>
+          <TouchableOpacity
+            style={styles.bookButton}
+            onPress={() => openGoogleMaps("Nizamabad")}
+          >
             <Text style={styles.bookButtonText}>See Location</Text>
           </TouchableOpacity>
         </View>
@@ -90,13 +113,15 @@ const Home = () => {
             post-vaccination care.
           </Text>
           <Text style={styles.eventDate}>21 Feb | 8:30 AM - 5:30 PM</Text>
-          <Text style={styles.eventLocation}>Warangal</Text>
-          <TouchableOpacity style={styles.bookButton}>
+          <Text style={styles.eventLocation}>📍 Warangal</Text>
+          <TouchableOpacity
+            style={styles.bookButton}
+            onPress={() => openGoogleMaps("Warangal")}
+          >
             <Text style={styles.bookButtonText}>See Location</Text>
           </TouchableOpacity>
         </View>
 
-        {/* New Event Cards */}
         <View style={styles.eventCard}>
           <Image
             source={{
@@ -110,8 +135,11 @@ const Home = () => {
             health and receive guidance on maintaining normal BP levels.
           </Text>
           <Text style={styles.eventDate}>15 Feb | 10:00 AM - 4:00 PM</Text>
-          <Text style={styles.eventLocation}>Secunderabad</Text>
-          <TouchableOpacity style={styles.bookButton}>
+          <Text style={styles.eventLocation}>📍 Secunderabad</Text>
+          <TouchableOpacity
+            style={styles.bookButton}
+            onPress={() => openGoogleMaps("Secunderabad")}
+          >
             <Text style={styles.bookButtonText}>See Location</Text>
           </TouchableOpacity>
         </View>
@@ -129,8 +157,11 @@ const Home = () => {
             maintaining healthy teeth and gums.
           </Text>
           <Text style={styles.eventDate}>18 Feb | 9:00 AM - 3:00 PM</Text>
-          <Text style={styles.eventLocation}>Vijayawada</Text>
-          <TouchableOpacity style={styles.bookButton}>
+          <Text style={styles.eventLocation}>📍 Vijayawada</Text>
+          <TouchableOpacity
+            style={styles.bookButton}
+            onPress={() => openGoogleMaps("Vijayawada")}
+          >
             <Text style={styles.bookButtonText}>See Location</Text>
           </TouchableOpacity>
         </View>
@@ -148,8 +179,11 @@ const Home = () => {
             check-up camp.
           </Text>
           <Text style={styles.eventDate}>20 Feb | 11:00 AM - 5:00 PM</Text>
-          <Text style={styles.eventLocation}>Vizag</Text>
-          <TouchableOpacity style={styles.bookButton}>
+          <Text style={styles.eventLocation}>📍 Vizag</Text>
+          <TouchableOpacity
+            style={styles.bookButton}
+            onPress={() => openGoogleMaps("Vizag")}
+          >
             <Text style={styles.bookButtonText}>See Location</Text>
           </TouchableOpacity>
         </View>
