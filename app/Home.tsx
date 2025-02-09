@@ -7,16 +7,13 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { useRouter } from "expo-router";
 
 const Home = () => {
-  const router = useRouter(); // Use the router hook
-
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerLogo}>st.</Text>
+        <Text style={styles.headerLogo}>HealthHive</Text>
         <TouchableOpacity>
           <Image
             source={{ uri: "https://img.icons8.com/ios-filled/50/search.png" }}
@@ -24,7 +21,7 @@ const Home = () => {
           />
         </TouchableOpacity>
         <View style={styles.coinContainer}>
-          <Text style={styles.coinText}>65</Text>
+          <Text style={styles.coinText}></Text>
           <Image
             source={{ uri: "https://img.icons8.com/ios-filled/50/coin.png" }}
             style={styles.iconSmall}
@@ -32,46 +29,124 @@ const Home = () => {
         </View>
       </View>
 
-      {/* Profile Completion Card */}
-      <View style={styles.profileCard}>
-        <Text style={styles.profileTitle}>Suhitha</Text>
-        <Text style={styles.profileSubText}>
-          Please complete your profile to get access to all the events,
-          internships, communities and more.
-        </Text>
-        <View style={styles.progressContainer}>
-          <Text style={styles.progressText}>25%</Text>
-          <View style={styles.progressCircle} />
-        </View>
-        <TouchableOpacity style={styles.completeProfileButton}>
-          <Text style={styles.completeProfileButtonText}>
-            Complete Your Profile
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Upcoming Events */}
       <ScrollView>
+        {/* Profile Completion Card */}
+        <View style={styles.profileCard}>
+          <Text style={styles.profileTitle}>Suhitha</Text>
+          <Text style={styles.profileSubText}>
+            Please complete your profile to get access to all the events,
+            internships, communities, and more.
+          </Text>
+          <View style={styles.progressContainer}>
+            <Text style={styles.progressText}>25%</Text>
+            <View style={styles.progressCircle} />
+          </View>
+          <TouchableOpacity style={styles.completeProfileButton}>
+            <Text style={styles.completeProfileButtonText}>
+              Complete Your Profile
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Upcoming Events */}
         <Text style={styles.sectionTitle}>Upcoming Events</Text>
+
+        {/* Event Cards */}
         <View style={styles.eventCard}>
           <Image
-            source={{ uri: "https://via.placeholder.com/300x150" }}
+            source={{
+              uri: "https://cdn.expresshealthcare.in/wp-content/uploads/2020/01/03174832/Medical-camp-750x409.jpg",
+            }}
             style={styles.eventImage}
           />
-          <Text style={styles.eventTitle}>
-            Fundamentals of AR/VR - E-Certification
-          </Text>
+          <Text style={styles.eventTitle}>Dengue Health Camp</Text>
           <Text style={styles.eventSubText}>
-            Dive into the fascinating world of Virtual Reality (VR) & Augmented
-            Reality (AR)
+            People are welcome to visit this health camp to undergo dengue
+            testing and receive essential information on preventive measures to
+            protect themselves against dengue.
           </Text>
-          <Text style={styles.eventDate}>11 Feb | 7:00 PM - 8:30 PM</Text>
+          <Text style={styles.eventDate}>11 Feb | 1:00 PM - 6:30 PM</Text>
           <Text style={styles.eventLocation}>Hyderabad</Text>
-          <TouchableOpacity
-            style={styles.bookButton}
-            onPress={() => router.push("/Events")} // Navigate to Events page
-          >
-            <Text style={styles.bookButtonText}>Book Now</Text>
+          <TouchableOpacity style={styles.bookButton}>
+            <Text style={styles.bookButtonText}>See Location</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.eventCard}>
+          <Image
+            source={{
+              uri: "https://www.un.org/sites/un2.un.org/files/field/image/1583952355.1997.jpg",
+            }}
+            style={styles.eventImage}
+          />
+          <Text style={styles.eventTitle}>COVID-19 Vaccine Drive</Text>
+          <Text style={styles.eventSubText}>
+            Individuals can visit this vaccine drive to receive their COVID-19
+            vaccination and gain important information on safety measures and
+            post-vaccination care.
+          </Text>
+          <Text style={styles.eventDate}>21 Feb | 8:30 AM - 5:30 PM</Text>
+          <Text style={styles.eventLocation}>Warangal</Text>
+          <TouchableOpacity style={styles.bookButton}>
+            <Text style={styles.bookButtonText}>See Location</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* New Event Cards */}
+        <View style={styles.eventCard}>
+          <Image
+            source={{
+              uri: "https://img.freepik.com/free-photo/doctor-measuring-blood-pressure-patient_53876-42352.jpg",
+            }}
+            style={styles.eventImage}
+          />
+          <Text style={styles.eventTitle}>BP Check-Up Camp</Text>
+          <Text style={styles.eventSubText}>
+            Free blood pressure check-ups to help individuals monitor their
+            health and receive guidance on maintaining normal BP levels.
+          </Text>
+          <Text style={styles.eventDate}>15 Feb | 10:00 AM - 4:00 PM</Text>
+          <Text style={styles.eventLocation}>Secunderabad</Text>
+          <TouchableOpacity style={styles.bookButton}>
+            <Text style={styles.bookButtonText}>See Location</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.eventCard}>
+          <Image
+            source={{
+              uri: "https://img.freepik.com/free-photo/dentist-examines-patient-s-teeth_1157-20278.jpg",
+            }}
+            style={styles.eventImage}
+          />
+          <Text style={styles.eventTitle}>Dental Check-Up Camp</Text>
+          <Text style={styles.eventSubText}>
+            Visit our dental camp for free oral health check-ups and tips on
+            maintaining healthy teeth and gums.
+          </Text>
+          <Text style={styles.eventDate}>18 Feb | 9:00 AM - 3:00 PM</Text>
+          <Text style={styles.eventLocation}>Vijayawada</Text>
+          <TouchableOpacity style={styles.bookButton}>
+            <Text style={styles.bookButtonText}>See Location</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.eventCard}>
+          <Image
+            source={{
+              uri: "https://img.freepik.com/free-photo/ophthalmologist-checking-patient-s-eyes-clinic_23-2148772383.jpg",
+            }}
+            style={styles.eventImage}
+          />
+          <Text style={styles.eventTitle}>Eye Check-Up Camp</Text>
+          <Text style={styles.eventSubText}>
+            Get your vision checked and learn about eye health in our free eye
+            check-up camp.
+          </Text>
+          <Text style={styles.eventDate}>20 Feb | 11:00 AM - 5:00 PM</Text>
+          <Text style={styles.eventLocation}>Vizag</Text>
+          <TouchableOpacity style={styles.bookButton}>
+            <Text style={styles.bookButtonText}>See Location</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -81,11 +156,11 @@ const Home = () => {
         <TouchableOpacity>
           <Text style={styles.navText}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push("/Events")}>
-          <Text style={styles.navText}>Events</Text>
+        <TouchableOpacity>
+          <Text style={styles.navText}>SymptCheck</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.navText}>Internships</Text>
+          <Text style={styles.navText}>Events</Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.navText}>More</Text>
@@ -98,24 +173,24 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "beige",
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     padding: 16,
-    backgroundColor: "#d71920",
+    backgroundColor: "#d8b384",
   },
   headerLogo: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#fff",
+    color: "black",
   },
   icon: {
     width: 20,
     height: 20,
-    tintColor: "#fff",
+    tintColor: "black",
   },
   iconSmall: {
     width: 15,
@@ -127,56 +202,59 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   coinText: {
-    color: "#fff",
+    color: "black",
     fontWeight: "bold",
   },
   profileCard: {
-    backgroundColor: "#d71920",
-    padding: 16,
-    margin: 16,
-    borderRadius: 12,
+    backgroundColor: "#f5e6d0",
+    padding: 12,
+    margin: 12,
+    borderRadius: 10,
     alignItems: "center",
+    elevation: 3,
   },
   profileTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#fff",
+    color: "black",
   },
   profileSubText: {
-    color: "#fff",
-    marginVertical: 8,
+    color: "black",
+    marginVertical: 6,
     textAlign: "center",
+    fontSize: 14,
   },
   progressContainer: {
     alignItems: "center",
     marginTop: 8,
   },
   progressText: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
-    color: "#fff",
+    color: "black",
   },
   progressCircle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: "#ffbaba",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: "#d8b384",
     marginVertical: 8,
   },
   completeProfileButton: {
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 8,
+    backgroundColor: "#d8b384",
+    padding: 8,
+    borderRadius: 6,
     marginTop: 8,
   },
   completeProfileButtonText: {
-    color: "#d71920",
+    color: "black",
     fontWeight: "bold",
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: "bold",
     margin: 16,
+    color: "black",
   },
   eventCard: {
     backgroundColor: "#fff",
@@ -186,6 +264,7 @@ const styles = StyleSheet.create({
     padding: 16,
     elevation: 4,
   },
+
   eventImage: {
     width: "100%",
     height: 150,
@@ -195,41 +274,43 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginTop: 8,
+    color: "black",
   },
   eventSubText: {
-    color: "gray",
+    color: "black",
     marginVertical: 4,
   },
   eventDate: {
     fontWeight: "bold",
     marginVertical: 4,
+    color: "black",
   },
   eventLocation: {
-    color: "gray",
+    color: "black",
     marginVertical: 4,
   },
   bookButton: {
-    backgroundColor: "#d71920",
+    backgroundColor: "#d8b384",
     paddingVertical: 10,
     borderRadius: 8,
     marginTop: 8,
     alignItems: "center",
   },
   bookButtonText: {
-    color: "#fff",
+    color: "black",
     fontWeight: "bold",
   },
   bottomNav: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "#fff",
+    backgroundColor: "#f5e6d0",
     paddingVertical: 12,
     borderTopWidth: 1,
     borderColor: "#ddd",
   },
   navText: {
     fontWeight: "bold",
-    color: "#d71920",
+    color: "black",
   },
 });
 
