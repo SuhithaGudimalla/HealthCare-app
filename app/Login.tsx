@@ -19,18 +19,20 @@ const Login = () => {
   const router = useRouter();
 
   const handleLogin = () => {
-    if (!email || !password) {
-      Alert.alert("Error", "Please fill in all fields.");
+    // Validate email and password
+    if (!email.includes("@") || !email.includes(".")) {
+      Alert.alert("Invalid Email", "Please enter a valid email address.");
       return;
     }
 
-    // Dummy authentication
-    if (email === "test@example.com" && password === "password") {
-      Alert.alert("Login Successful");
-      router.replace("/tabs/dashboard"); // Adjust path if needed
-    } else {
-      Alert.alert("Login Failed", "Invalid email or password.");
+    if (password.length < 5) {
+      Alert.alert("Invalid Password", "Password must be at least 5 characters.");
+      return;
     }
+
+    // Successful login
+    Alert.alert("Login Successful");
+    router.replace("/Home"); // Navigate to the Home page
   };
 
   return (
@@ -41,21 +43,27 @@ const Login = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <Text style={styles.title}>Login</Text>
+
+          {/* Email Input */}
           <TextInput
             style={styles.input}
             placeholder="Email"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={(text) => setEmail(text)}
             autoCapitalize="none"
             keyboardType="email-address"
           />
+
+          {/* Password Input */}
           <TextInput
             style={styles.input}
             placeholder="Password"
             value={password}
-            onChangeText={setPassword}
+            onChangeText={(text) => setPassword(text)}
             secureTextEntry
           />
+
+          {/* Login Button */}
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
@@ -71,6 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
+    backgroundColor: "#f5f5f5",
   },
   title: {
     fontSize: 24,
@@ -79,22 +88,24 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
-    height: 40,
+    height: 50,
     borderColor: "gray",
     borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
-    borderRadius: 4,
+    marginBottom: 16,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    backgroundColor: "#ffffff",
   },
   button: {
     backgroundColor: "#007bff",
-    paddingVertical: 10,
+    paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 4,
+    borderRadius: 8,
   },
   buttonText: {
-    color: "#fff",
+    color: "#ffffff",
     fontWeight: "bold",
+    fontSize: 16,
   },
 });
 
