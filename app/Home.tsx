@@ -194,7 +194,7 @@ const Home = () => {
         <TouchableOpacity>
           <Text style={styles.navText}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/SymptomCheckerScreen")}>
           <Text style={styles.navText}>SymptCheck</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => router.push("/Events")}>
