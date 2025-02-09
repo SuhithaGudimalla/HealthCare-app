@@ -1,4 +1,6 @@
 import React from "react";
+import { useRouter } from "expo-router";
+import { Linking } from "react-native";
 import {
   View,
   Text,
@@ -8,7 +10,9 @@ import {
   ScrollView,
 } from "react-native";
 
+
 const Home = () => {
+    const router = useRouter();
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -159,7 +163,7 @@ const Home = () => {
         <TouchableOpacity>
           <Text style={styles.navText}>SymptCheck</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/Events")}>
           <Text style={styles.navText}>Events</Text>
         </TouchableOpacity>
         <TouchableOpacity>
