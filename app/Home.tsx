@@ -1,14 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
+import { useRouter } from "expo-router";
 
 const Home = () => {
+  const router = useRouter(); // Use the router hook
+
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerLogo}>st.</Text>
         <TouchableOpacity>
-          <Image source={{ uri: "https://img.icons8.com/ios-filled/50/search.png" }} style={styles.icon} />
+          <Image
+            source={{ uri: "https://img.icons8.com/ios-filled/50/search.png" }}
+            style={styles.icon}
+          />
         </TouchableOpacity>
         <View style={styles.coinContainer}>
           <Text style={styles.coinText}>65</Text>
@@ -23,14 +36,17 @@ const Home = () => {
       <View style={styles.profileCard}>
         <Text style={styles.profileTitle}>Suhitha</Text>
         <Text style={styles.profileSubText}>
-          Please complete your profile to get access to all the events, internships, communities and more.
+          Please complete your profile to get access to all the events,
+          internships, communities and more.
         </Text>
         <View style={styles.progressContainer}>
           <Text style={styles.progressText}>25%</Text>
           <View style={styles.progressCircle} />
         </View>
         <TouchableOpacity style={styles.completeProfileButton}>
-          <Text style={styles.completeProfileButtonText}>Complete Your Profile</Text>
+          <Text style={styles.completeProfileButtonText}>
+            Complete Your Profile
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -46,11 +62,15 @@ const Home = () => {
             Fundamentals of AR/VR - E-Certification
           </Text>
           <Text style={styles.eventSubText}>
-            Dive into the fascinating world of Virtual Reality (VR) & Augmented Reality (AR)
+            Dive into the fascinating world of Virtual Reality (VR) & Augmented
+            Reality (AR)
           </Text>
           <Text style={styles.eventDate}>11 Feb | 7:00 PM - 8:30 PM</Text>
           <Text style={styles.eventLocation}>Hyderabad</Text>
-          <TouchableOpacity style={styles.bookButton}>
+          <TouchableOpacity
+            style={styles.bookButton}
+            onPress={() => router.push("/Events")} // Navigate to Events page
+          >
             <Text style={styles.bookButtonText}>Book Now</Text>
           </TouchableOpacity>
         </View>
@@ -61,7 +81,7 @@ const Home = () => {
         <TouchableOpacity>
           <Text style={styles.navText}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/Events")}>
           <Text style={styles.navText}>Events</Text>
         </TouchableOpacity>
         <TouchableOpacity>
